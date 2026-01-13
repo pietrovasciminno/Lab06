@@ -45,7 +45,6 @@ class View:
             size=16,
             weight=ft.FontWeight.BOLD
         )
-
         # TextField per responsabile
         self.input_responsabile = ft.TextField(value=self.controller.get_responsabile(), label="Responsabile")
 
@@ -63,8 +62,8 @@ class View:
         pulsante_conferma_responsabile = ft.ElevatedButton("Conferma", on_click=self.controller.conferma_responsabile)
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
-        # TODO
-
+        pulsante_mostra_automobile = ft.ElevatedButton("Mostra", on_click=self.controller.get_elenco_automobili)
+        pulsante_ricerca_auto = ft.ElevatedButton("Cerca", on_click=self.controller.cerca_automobili)
         # --- LAYOUT ---
         self.page.add(
             self.toggle_cambia_tema,
@@ -82,10 +81,15 @@ class View:
             ft.Divider(),
 
             # Sezione 3
-            # TODO
+            ft.Row(controls=[ft.Text("Automobili", size=20),pulsante_mostra_automobile],
+                   alignment=ft.MainAxisAlignment.START),
+            self.lista_auto,
+            ft.Divider(),
 
             # Sezione 4
-            # TODO
+            ft.Row(controls=[self.input_modello_auto, pulsante_ricerca_auto],
+                   alignment=ft.MainAxisAlignment.START),
+            self.lista_auto_ricerca
         )
 
     def cambia_tema(self, e):
