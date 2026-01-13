@@ -44,7 +44,9 @@ class Controller:
 
     def cerca_automobili(self,e):
         self._view.lista_auto_ricerca.controls.clear()
-        lista_ricerca = self._model.cerca_automobili_per_modello()
+        modello = self._view.input_modello_auto.value
+
+        lista_ricerca = self._model.cerca_automobili_per_modello(modello)
         if lista_ricerca is not None:
             if len(lista_ricerca) > 0 :
                 for auto in lista_ricerca:

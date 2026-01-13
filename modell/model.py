@@ -67,3 +67,7 @@ class Autonoleggio:
         else:
             print("No Connection")
             return None
+
+
+
+

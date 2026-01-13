@@ -6,16 +6,14 @@ import pathlib
 def get_connection() -> mysql.connector.connection:
     try:
         cnx = mysql.connector.connect(
-            option_files=f"{pathlib.Path(__file__).parent.resolve()}/connector.cnf"
+            host="localhost",  # XAMPP default
+            port=3306,
+            user="root",  # XAMPP default
+            password="",  # XAMPP default
+            database="autonoleggio",
+            use_pure=True
         )
         return cnx
     except mysql.connector.Error as err:
-        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            print("Something is wrong with your user name or password")
-            return None
-        elif err.errno == errorcode.ER_BAD_DB_ERROR:
-            print("Database does not exist")
-            return None
-        else:
-            print(err)
-            return None
+        print("Errore connessione:", err)
+        return None
